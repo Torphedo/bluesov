@@ -1,0 +1,5 @@
+# Visual Studio, build output
+.vs/
+out/
+x64/
+

@@ -1,0 +1,90 @@
+;
+; sov.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System ; TODO: specify appropriate Class
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318} ; TODO: specify appropriate ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=sov.cat
+DriverVer= ; TODO: set DriverVer in stampinf property pages
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+sov_Device_CoInstaller_CopyFiles = 11
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+sov.sys  = 1,,
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NT$ARCH$
+
+[Standard.NT$ARCH$]
+%sov.DeviceDesc%=sov_Device, Root\sov ; TODO: edit hw-id
+
+[sov_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+sov.sys
+
+;-------------- Service installation
+[sov_Device.NT.Services]
+AddService = sov,%SPSVCINST_ASSOCSERVICE%, sov_Service_Inst
+
+; -------------- sov driver install sections
+[sov_Service_Inst]
+DisplayName    = %sov.SVCDESC%
+ServiceType    = %SERVICE_KERNEL_DRIVER%
+StartType      = %SERVICE_SYSTEM_START%
+ErrorControl   = %SERVICE_ERROR_NORMAL%
+ServiceBinary  = %12%\sov.sys
+
+;
+;--- sov_Device Coinstaller installation ------
+;
+
+[sov_Device.NT.CoInstallers]
+AddReg=sov_Device_CoInstaller_AddReg
+CopyFiles=sov_Device_CoInstaller_CopyFiles
+
+[sov_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[sov_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+[sov_Device.NT.Wdf]
+KmdfService =  sov, sov_wdfsect
+[sov_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+ManufacturerName="bluesov throngler dev team"
+sov.DeviceDesc = "N/A"
+sov.SVCDESC = "sov"
+
+DiskName = "disk"
+; non-localizable
+SPSVCINST_TAGTOFRONT  = 0x00000001
+SPSVCINST_ASSOCSERVICE= 0x00000002
+SERVICE_KERNEL_DRIVER = 1
+SERVICE_BOOT_START    = 0
+SERVICE_SYSTEM_START  = 1
+SERVICE_AUTO_START    = 2
+SERVICE_DEMAND_START  = 3
+SERVICE_ERROR_NORMAL  = 1
+SERVICE_ERROR_IGNORE  = 0
+REG_EXPAND_SZ         = 0x00020000
+REG_DWORD             = 0x00010001
+REG_SZ                = 0x00000000

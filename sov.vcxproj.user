@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TestCertificate>CN="WDKTestCert Torphedo,133437823692846417" | C59B61A5DF280B9849A3F506585C568F0F9D72D5</TestCertificate>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <RemoveDriver>True</RemoveDriver>
+    <InstallMode>None</InstallMode>
+    <HardwareIdString />
+    <CommandLine />
+    <ScriptPath>C:\Program Files (x86)\Windows Kits\10\Testing\Tests\Utilities\DefaultDriverPackageInstallationTask.dll</ScriptPath>
+    <DbgengRemoteMachineName>Driver Target</DbgengRemoteMachineName>
+    <DbgengKernelMachineName>Driver Target</DbgengKernelMachineName>
+    <DeployFiles />
+    <ScriptName>Microsoft.DriverKit.DefaultDriverPackageInstallationClass.PerformDefaultDriverPackageInstallation</ScriptName>
+    <ScriptDeviceQuery />
+    <TestCertificate>CN="WDKTestCert Torphedo,133527615616561141" | DB353D5C5F4D5BAB2B357724D1A09A4A5F809FEC</TestCertificate>
+  </PropertyGroup>
+</Project>
