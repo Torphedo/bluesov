@@ -1,5 +1,7 @@
 ;
 ; sov.inf
+; This install file doesnt seem to always work. I install it with System
+; Informer instead, for my tests.
 ;
 
 [Version]
@@ -70,6 +72,8 @@ KmdfService =  sov, sov_wdfsect
 KmdfLibraryVersion = $KMDFVERSION$
 
 [Strings]
+; These names/descriptions are from a long chain of word associations and
+; inside jokes. Sorry that its kind of incomprehensible :)
 ManufacturerName="bluesov throngler dev team"
 sov.DeviceDesc = "N/A"
 sov.SVCDESC = "sov"
