@@ -6,7 +6,16 @@ broadly will crash `wininit.exe` and stop Windows from booting.
 Tested on Hyper-V with the latest version Windows 10 as of Feburary 2024. The
 driver only uses stable APIs, so there should be no issues on newer versions of
 Windows. It won't work on builds older than April 2019, because it relies on
-`ZwGetNextThread` being exported from `ntoskrnl.exe`.
+`ZwGetNextThread` being exported from `ntoskrnl.exe`. I used the driver with my
+PE injector [gml](https://github.com/Torphedo/gml). In my testing, it stopped
+the injection with no side effects:
+https://github.com/Torphedo/bluesov/assets/73564623/1536402e-2267-4ba0-ae6e-f66f08f2a9d1
+
+I also tried testing it with Phantom Dust (`PDUWP.exe`) whitelisted for
+protection, but it crashed the game. My guess is that something in the UWP app
+needs `PROCESS_ALL_ACCESS` to boot, but I don't know why. However, the mod
+loader can be spotted trying to get a process handle in WinDbg, and the driver
+blocked it correctly.
 
 ## Why?
 I wrote this as a side project for the cybersecurity club at my university.
