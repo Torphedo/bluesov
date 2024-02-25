@@ -9,6 +9,7 @@ Windows. It won't work on builds older than April 2019, because it relies on
 `ZwGetNextThread` being exported from `ntoskrnl.exe`. I used the driver with my
 PE injector [gml](https://github.com/Torphedo/gml). In my testing, it stopped
 the injection with no side effects:
+
 https://github.com/Torphedo/bluesov/assets/73564623/1536402e-2267-4ba0-ae6e-f66f08f2a9d1
 
 I also tried testing it with Phantom Dust (`PDUWP.exe`) whitelisted for
